@@ -1,6 +1,6 @@
 # Quotes to Scrape 웹사이트에서 오늘의 명언
 library(rvest)
-library(tidyverse)
+library(magrittr)
 
 url <- "https://quotes.toscrape.com"
 html <- read_html(url)
