@@ -33,6 +33,6 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "<>"
-          git commit -m '신규 여론조사' || exit 0
+          git commit nesdc.csv -m '신규 여론조사' || exit 0
           git push origin
           
