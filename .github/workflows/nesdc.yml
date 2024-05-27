@@ -5,16 +5,16 @@ on:
   schedule:
     - cron:  '10 * * * *' # 매 시간 10분에 실행
 
-name: quote
+name: nesdc
 
 jobs:
-  quote:
+  nesdc:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      NTFY_QUOTE_TOPIC: ${{ secrets.NTFY_QUOTE_TOPIC }}
+      NESDC_TOPIC: ${{ secrets.NESDC_TOPIC }}
       
     steps:
       - name: Checkout repo
@@ -26,13 +26,13 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
       
-      - name: Fetch latest quote
-        run:  Rscript quote.R
+      - name: Fetch polls info
+        run:  Rscript nesdc.R
       
       - name: Commit Results
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "<>"
-          git commit -m '오늘의 명언' || exit 0
+          git commit -m '신규 여론조사' || exit 0
           git push origin
-  
+          
