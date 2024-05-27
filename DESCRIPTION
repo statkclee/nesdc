@@ -1,0 +1,17 @@
+Package: nesdc
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R:
+  person("Victor", "lee", , "victor@bit2r.com", role = c("aut", "cre"))
+Description: What the package does (one paragraph).
+License: GPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+  ntfy (>= 0.0.3),
+rvest
+URL: https://github.com/statkclee/cron_job
+BugReports: https://github.com/statkclee/cron_job/issues
+Remotes:  
+  jonocarroll/ntfy
