@@ -10,7 +10,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
   ntfy (>= 0.0.3),
-  rvest
+  rvest,
+  tidyverse
 URL: https://github.com/statkclee/cron_job
 BugReports: https://github.com/statkclee/cron_job/issues
 Remotes:  
