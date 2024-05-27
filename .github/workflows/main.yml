@@ -5,16 +5,16 @@ on:
   schedule:
     - cron:  '10 * * * *' # 매 시간 10분에 실행
 
-name: hello
+name: quote
 
 jobs:
-  hello:
+  quote:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+      NTFY_QUOTE_TOPIC: ${{ secrets.NTFY_QUOTE_TOPIC }}
       
     steps:
       - name: Checkout repo
@@ -26,20 +26,14 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
       
-      - name: Install remotes
-        run: Rscript -e 'install.packages("remotes")'
-      
-      - name: Install ntfy package
-        run: Rscript -e 'remotes::install_github("jonocarroll/ntfy")'
-
-      - name: Fetch latest data
-        run:  Rscript hello.R
+      - name: Fetch latest quote
+        run:  Rscript quote.R
       
       - name: Commit Results
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "<>"
-          git commit -m '헬로월드' || exit 0
+          git commit -m '오늘의 명언' || exit 0
           git push origin
   
         
