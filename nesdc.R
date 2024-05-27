@@ -1,6 +1,8 @@
 # 중앙선거여론조사심의위원회
 library(rvest)
 library(magrittr)
+library(dplyr)
+library(readr)
 
 # 현시점 여론조사결과 등록 수집 ---------------
 url <- "https://www.nesdc.go.kr/portal/bbs/B0000005/list.do?menuNo=200467"
