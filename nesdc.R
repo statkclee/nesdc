@@ -12,8 +12,8 @@ rows <- html |> html_elements("div.board") |>
   html_nodes("a.row.tr") 
 
 data <- rows %>% 
-  map_df(~{
-    tibble(
+  purrr::map_df(~{
+    dplyr::tibble(
       등록번호 = html_text(html_node(., xpath = ".//span[1]")),
       조사기관명 = html_text(html_node(., xpath = ".//span[2]")),
       조사의뢰자 = html_text(html_node(., xpath = ".//span[3]")),
@@ -22,22 +22,22 @@ data <- rows %>%
       시도 = html_text(html_node(., xpath = ".//span[6]"))
     )
 }) |> 
-  mutate(등록번호 = as.integer(등록번호),
+  dplyr::mutate(등록번호 = as.integer(등록번호),
          등록일 = as.Date(등록일, format = "%Y-%m-%d"))
 
 # 이전시점 여론조사결과 등록 수집 ---------------
-old_data <- read_csv("nesdc.csv")
+old_data <- readr::read_csv("nesdc.csv")
 
 oldest_reg_no <- old_data |> 
-  arrange(desc(등록번호)) |> 
-  slice_max(n = 1, order_by = 등록번호) |> 
-  pull(등록번호) 
+  dplyr::arrange(desc(등록번호)) |> 
+  dplyr::slice_max(n = 1, order_by = 등록번호) |> 
+  dplyr::pull(등록번호) 
 
 # 현시점과 이전시점 여론조사 등록 결과 비교 -------
 
 latest_reg_no <- data |> 
-  slice_max(n = 1, order_by = 등록번호) |> 
-  pull(등록번호) 
+  dplyr::slice_max(n = 1, order_by = 등록번호) |> 
+  dplyr::pull(등록번호) 
 
 if(latest_reg_no > oldest_reg_no){
   
@@ -51,6 +51,6 @@ if(latest_reg_no > oldest_reg_no){
 }
 
 # 최신 여론조사등록 -------
-data |> write_csv("nesdc.csv")
+data |> readr::write_csv("nesdc.csv")
 
 
