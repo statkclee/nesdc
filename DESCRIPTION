@@ -1,5 +1,5 @@
 Package: nesdc
-Title: What the Package Does (One Line, Title Case)
+Title: What the Package Does (One Line, Title Case) 
 Version: 0.0.0.9000
 Authors@R:
   person("Victor", "lee", , "victor@bit2r.com", role = c("aut", "cre"))
